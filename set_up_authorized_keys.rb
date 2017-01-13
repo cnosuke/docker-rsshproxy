@@ -19,7 +19,7 @@ else
   nil
 end
 
-open('/root/.ssh/authorized_keys', 'a') do |io|
+open('/staff/.ssh/authorized_keys', 'a') do |io|
   if keys
     puts 'Adding /keys...'
     io.puts "\n\n# From /keys\n\n"
@@ -33,4 +33,4 @@ open('/root/.ssh/authorized_keys', 'a') do |io|
   end
 end
 
-system('chmod 600 /root/.ssh/authorized_keys')
+system('chmod 600 /staff/.ssh/authorized_keys')

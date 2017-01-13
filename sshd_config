@@ -1,7 +1,10 @@
 Port 22
 
-PermitRootLogin prohibit-password
+# PermitRootLogin prohibit-password
+PermitRootLogin no
+ChallengeResponseAuthentication no
+PasswordAuthentication no
 RSAAuthentication yes
 PubkeyAuthentication yes
-AuthorizedKeysFile	.ssh/authorized_keys
+AuthorizedKeysFile	%h/.ssh/authorized_keys
 GatewayPorts yes

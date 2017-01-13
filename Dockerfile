@@ -8,7 +8,11 @@ ADD sshd_config /etc/ssh/sshd_config
 ADD run.sh .
 ADD set_up_authorized_keys.rb .
 
-RUN mkdir /root/.ssh/ && touch /root/.ssh/authorized_keys
+RUN mkdir -p /staff/.ssh/ && touch /staff/.ssh/authorized_keys
+
+RUN adduser -D -h /staff staff \
+  && passwd -u staff \
+  && chown staff:staff /staff/.ssh/authorized_keys
 
 EXPOSE 22
 
