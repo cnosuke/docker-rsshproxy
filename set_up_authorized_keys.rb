@@ -1,5 +1,12 @@
 require 'open-uri'
 
+AUTHORIZED_KEYS_PATH = '/staff/.ssh/authorized_keys'
+
+passed_authorized_keys_path = ENV['AUTHORIZED_KEYS_PATH'] || ''
+if File.exist?(passed_authorized_keys_path)
+  system("cat #{padssed_authorized_keys_path} >> #{AUTHORIZED_KEYS_PATH}")
+end
+
 gh_users = (ENV['GITHUB_USER'] || '').split(',')
 
 gh_keys = if gh_users.size > 0
@@ -19,7 +26,7 @@ else
   nil
 end
 
-open('/staff/.ssh/authorized_keys', 'a') do |io|
+open(AUTHORIZED_KEYS_PATH, 'a') do |io|
   if keys
     puts 'Adding /keys...'
     io.puts "\n\n# From /keys\n\n"
@@ -33,4 +40,4 @@ open('/staff/.ssh/authorized_keys', 'a') do |io|
   end
 end
 
-system('chmod 600 /staff/.ssh/authorized_keys')
+system("chmod 600 #{AUTHORIZED_KEYS_PATH}")

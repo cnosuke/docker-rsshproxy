@@ -2,17 +2,18 @@ FROM ruby:2.3-alpine
 MAINTAINER cnosuke
 
 RUN apk update \
-    && apk add --no-cache bash openssh
+    && apk add --no-cache bash openssh \
+    && mkdir -p /staff/.ssh/ /setup \
+    && touch /staff/.ssh/authorized_keys \
+    && adduser -D -h /staff staff \
+    && passwd -u staff \
+    && chown staff:staff /staff/.ssh/authorized_keys
 
-ADD sshd_config /etc/ssh/sshd_config
-ADD run.sh .
-ADD set_up_authorized_keys.rb .
+ADD . /setup
+WORKDIR /setup
 
-RUN mkdir -p /staff/.ssh/ && touch /staff/.ssh/authorized_keys
-
-RUN adduser -D -h /staff staff \
-  && passwd -u staff \
-  && chown staff:staff /staff/.ssh/authorized_keys
+ENV HOST_KEYS /host_keys
+ENV SSH_PORT 22
 
 EXPOSE 22
 
