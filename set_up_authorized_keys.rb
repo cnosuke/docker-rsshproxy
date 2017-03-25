@@ -4,7 +4,7 @@ AUTHORIZED_KEYS_PATH = '/staff/.ssh/authorized_keys'
 
 passed_authorized_keys_path = ENV['AUTHORIZED_KEYS_PATH'] || ''
 if File.exist?(passed_authorized_keys_path)
-  system("cat #{padssed_authorized_keys_path} >> #{AUTHORIZED_KEYS_PATH}")
+  system("cat #{passed_authorized_keys_path} >> #{AUTHORIZED_KEYS_PATH}")
 end
 
 gh_users = (ENV['GITHUB_USER'] || '').split(',')
