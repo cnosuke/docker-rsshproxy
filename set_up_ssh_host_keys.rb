@@ -10,7 +10,7 @@ def create_host_key_if_not_exist(type, name)
 end
 
 def change_host_keys_permissions(name)
-  file_path = File.join(HOST_KEYS, name)
+  file_path = "/ssh-host-keys/#{name}"
   system("chmod 0600 #{file_path}")
 end
 
