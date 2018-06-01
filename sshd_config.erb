@@ -10,5 +10,5 @@ AuthorizedKeysFile	%h/.ssh/authorized_keys
 GatewayPorts yes
 
 <% %w(rsa dsa ecdsa ed25519).each do |t| %>
-HostKey <%= File.join(ENV['HOST_KEYS'], "ssh_host_#{t}_key") %>
+HostKey <%= "/ssh-host-keys/ssh_host_#{t}_key" %>
 <% end %>

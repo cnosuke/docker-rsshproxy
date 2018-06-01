@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo 'Setting up authorized_keys...' \
+  && mkdir -p /ssh-host-keys \
   && ruby set_up_authorized_keys.rb \
   && echo 'Creating host keys...' \
   && ruby set_up_ssh_host_keys.rb \

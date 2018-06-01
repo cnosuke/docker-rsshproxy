@@ -5,6 +5,8 @@ def create_host_key_if_not_exist(type, name)
   unless File.exist?(file_path)
     system("ssh-keygen -t #{type}  -N '' -f #{file_path}")
   end
+
+  system("cp #{file_path} /ssh-host-keys/")
 end
 
 def change_host_keys_permissions(name)
