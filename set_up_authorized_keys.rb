@@ -1,6 +1,6 @@
 require 'open-uri'
 
-AUTHORIZED_KEYS_PATH = '/staff/.ssh/authorized_keys'
+AUTHORIZED_KEYS_PATH = '/authorized_keys'
 
 passed_authorized_keys_path = ENV['AUTHORIZED_KEYS_PATH'] || ''
 if File.exist?(passed_authorized_keys_path)

@@ -4,10 +4,10 @@ MAINTAINER cnosuke
 RUN apk update \
     && apk add --no-cache bash openssh \
     && mkdir -p /staff/.ssh/ /setup \
-    && touch /staff/.ssh/authorized_keys \
+    && touch /authorized_keys \
     && adduser -D -h /staff staff \
     && passwd -u staff \
-    && chown staff:staff /staff/.ssh/authorized_keys
+    && chown staff:staff /authorized_keys
 
 ADD . /setup
 WORKDIR /setup
