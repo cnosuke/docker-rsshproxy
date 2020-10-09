@@ -6,7 +6,7 @@ RUN apk update \
     && apk add --no-cache bash openssh \
     && mkdir -p /staff/.ssh/ /setup \
     && touch /authorized_keys \
-    && adduser -D --shell /sbin/nologin --disabled-password staff \
+    && adduser --no-create-home --shell /sbin/nologin --disabled-password staff \
     && passwd -u staff \
     && chown staff:staff /authorized_keys
 
