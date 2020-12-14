@@ -10,12 +10,16 @@ end
 gh_users = (ENV['GITHUB_USER'] || '').split(',')
 
 gh_keys = if gh_users.size > 0
-  gh_users.map { |u|
-    open("https://github.com/#{u}.keys").read
-  }.join("\n")
-else
-  nil
-end
+            gh_users.map do |u|
+              key_url = "https://github.com/#{u}.keys"
+              begin
+                open(key_url).read
+              rescue OpenURI::HTTPError => e
+                warn "[WARN]: #{e.message} while opening #{key_url}, #{u}'s key is ignored'"
+                nil
+              end
+            end.compact.join("\n")
+          end
 
 key_files = Dir.glob('/keys/**')
 keys = if key_files.size > 0
