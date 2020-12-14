@@ -15,10 +15,10 @@ gh_keys = if gh_users.size > 0
               begin
                 open(key_url).read
               rescue OpenURI::HTTPError => e
-                puts "[WARN]: #{e.message} while opening #{key_url}, #{u}'s key is ignored'"
+                warn "[WARN]: #{e.message} while opening #{key_url}, #{u}'s key is ignored'"
                 nil
               end
-            end.select.to_a.join("\n")
+            end.compact.join("\n")
           end
 
 key_files = Dir.glob('/keys/**')
